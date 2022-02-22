@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 import {ServersService} from '../servers.service';
-import {ActivatedRoute, Params, Router} from '@angular/router';
+import {ActivatedRoute, Data, Params, Router} from '@angular/router';
 
 @Component({
   selector: 'app-server',
@@ -16,12 +16,19 @@ export class ServerComponent implements OnInit {
 
   ngOnInit() {
     // here + mark convert string id to number value
-    const id = +this.route.snapshot.params['id'];
+    /*const id = +this.route.snapshot.params['id'];
     this.server = this.serversService.getServer(id);
 
     this.route.params.subscribe(
       (params: Params) => {
         this.server = this.serversService.getServer(+params['id']);
+      }
+    );*/
+
+    // use resolver for access server data
+    this.route.data.subscribe(
+      (data: Data) => {
+        this.server = data['server']; // this server param is equivalent to resolver variable name of routing array
       }
     );
   }
