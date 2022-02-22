@@ -33,7 +33,7 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot):
     Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    return this.canActivateChild(childRoute, state);
+    return this.canActivate(childRoute, state);
   }
 
 }
